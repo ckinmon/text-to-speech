@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Text to Speech</title>
+    </head>
+    <body>
+        <input type="text" name="text">
+        <a href="a" class="say">Say it!</a>
+        <audio src="" hidden></audio>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script>
+            $(function() {
+                $('a.say').on('click', function(e){
+                    e.preventDefault();
+                    var text = $('input[name="text"]').val();
+                    text = encodeURI(text);
+                    console.log(text);
+                    
+                    // Google text to speech API requires token now
+                    var url = "https://translate.google.com/translate_tts?ie=UTF-8&q=" + text + "&t1=en";
+                    
+                    $('audio').attr('src', url).get(0).play();
+                });
+            });
+        </script>
+    </body>
+</html>
